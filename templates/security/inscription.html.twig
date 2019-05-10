@@ -1,0 +1,73 @@
+<!doctype html>
+<html>    
+    <head>
+        {% include 'info_science/head.html.twig'%}
+        <title>{% block title %} Inscription {% endblock %}</title>
+    </head>
+    <body >
+        <div class="container">
+  <div class="py-5 text-center">
+      <a href="{{ path('index') }}"><img class="d-block mx-auto mb-4" src="{{asset('dist/images/PPE.png')}}" alt="" width="72" height="72"></a>
+    <h2>InfoScience</h2>
+    <p class="lead">Vous êtes sur la page d'inscription d'infoScience. 
+       Un compte vous permet de commenter les articles sur le site. N'hésiter plus, inscrivez-vous !
+    </p>
+  </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Page de connexion</h4>
+      {{ form_start(form) }}
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            {{form_row(form.prenom, {'attr': {'placeholder': 'Votre Prénom'}}) }}
+            <div class="invalid-feedback">
+              prénom invalid. Un prénom ne peut contenir des nombres ou des caractères spéciaux. 
+              Il peut seulement contenir des lettres et un tiret pur les prénoms composé.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            {{form_row(form.nom, {'attr': {'placeholder': 'Votre Nom'}}) }}
+            <div class="invalid-feedback">
+             Nom de famille invalid. Un nom de famille ne peut contenir des nombres ou des caractères spéciaux. 
+             Il peut seulement contenir des lettres et un tiret pur les noms composé.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          {{form_row(form.mail, {'attr': {'placeholder': 'you@example.com'}}) }}
+          <div class="invalid-feedback">
+           Veuillez entrez une adresse mail valide.
+          </div>
+        </div>
+         <div class="row">
+          <div class="col-md-6 mb-3">
+            {{form_row(form.motDePasse, {'attr': {'placeholder': 'Votre mot de passe'}}) }}
+          </div>
+          <div class="col-md-6 mb-3">
+             {{form_row(form.confirm_motDePasse, {'attr': {'placeholder': 'entrez une deuxième fois votre mot de passse'}}) }}           
+          </div>
+          <div class="col-md-6 mb-3">
+             {{form_row(form.newsLetters, {'attr': {'placeholder': 'Si vous voulez vous inscrire à notre newsLetter, cocher cette case'}}) }}          
+          </div>
+                    
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">S'inscrire</button>
+    
+     {{ form_end(form) }}
+     <p>Déjà inscrit ? <a href="{{ path('security_inscription') }}">Connectez-vous</a></p>
+    </div>
+  </div>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-{{ "now"|date("Y") }}  Infoscience</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+               
+    </body>
+</html>
+

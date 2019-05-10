@@ -1,0 +1,46 @@
+easy_admin:
+    site_name: '<a href="/"><em class="class="blog-header-logo text-dark">InfoScience </em></a>'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    entities:
+        Utilisateurs:
+            class: App\Entity\Utilisateurs
+            label: 'Les utilisateurs'
+            list:
+                title: '%%entity_label%%'
+            show:
+                 title: '%%entity_label%% (#%%entity_id%%)'
+        Articles:
+            class: App\Entity\Articles
+            label: 'Les articles'
+            list:
+                title: '%%entity_label%%'
+                fields:
+                    - id
+                    - { property: 'ID_PARTICIPER', label: "Créateurs de l'article" }
+                    - { property: 'nom', label: "Nom de l'article" }
+                    - { property: 'publication', label: "Date de publication" }
+                    - { property: 'IdTheme', label: "Thème de l'article" }
+                    - { property: 'contenu', label: "Contenu de l'article" }
+            show:
+                 title: '%%entity_label%% (#%%entity_id%%)'
+    user:
+        display_name: true
+        display_avatar: true
+    design:
+        templates:
+            layout: 'templates/admin/dashboard.html.twig'
+        assets:
+            css:
+                - 'bundles/easyadmin/bootstrap-all.css'
+                - './public/dist/css/dist/css/blog.css'
+                - './public/dist/css/dist/css/dashboard.css'
+            js:
+                - './public/dist/css/dist/js/dashboard.js'
+                - 'bundles/easyadmin/bootstrap-all.js'
+        menu:
+           - label: 'Les Tables'
+             icon: 'users'
+             children: ['Utilisateurs','Articles']

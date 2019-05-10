@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+      {% include 'info_science/head.html.twig' %}
+      <title>Page de connexion</title>
+      <link href="{{ asset('dist/css/signin.css') }}" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" action="{{ path('security_connexion') }}" method="post">
+        <div class="text-center mb-4">
+            <a href="{{ path('index') }}"><img class="mb-4" src="{{ asset('dist/images/PPE.png') }}" alt="" width="72" height="72"></a>           
+            <h1 class="h3 mb-3 font-weight-normal">Page de connexion</h1>
+        </div>
+
+      <div class="form-label-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" id="inputEmail" name="_username" class="form-control" placeholder="Email address" required autofocus>
+      </div>
+
+      <div class="form-label-group">
+        <input type="password" id="inputPassword" name="_password" class="form-control" placeholder="Password" required>
+        <label for="inputPassword">Password</label>
+         <p>Pas de compte ? <a href="{{ path('security_inscription') }}">Inscrivez-vous</a></p>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" id="remember_me" value="_remember_me" />
+          <label for="remember_me">Se souvenir de moi</label>
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+    </form>
+  </body>
+</html>
+

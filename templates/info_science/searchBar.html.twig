@@ -1,0 +1,12 @@
+{{ form_start(searchBar, {
+    'attr': {'class': 'search-form'}
+}) }}
+<div class="input-group" style="z-index: 999">
+    {{ form_widget(searchBar.search,{
+        'attr': {'id':'searchBar','class':'form-control','placeholder':'Chercher...','style':'input:focus {border: none;}',}
+    }) }}
+    <div class="input-group-append" >
+
+    </div>
+</div>
+{{ form_end(searchBar) }}

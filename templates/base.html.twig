@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <title>{% block title %} InfoScience {% endblock %}</title>
+    <link ref="icon">
+    {% include 'info_science/head.html.twig' %}
+</head>
+
+<body>
+<div class="container">
+    <header class="blog-header py-3">
+
+        <div class="row justify-content-center">
+            <div class="col-4 text-center">
+                <a class="blog-header-logo align-content-center text-dark " href="{{ path('index') }}">InfoScience</a>
+            </div>
+
+        </div>
+        <div class="col-4">
+            {{ render(controller("App\\Controller\\InfoScienceController::searchBar")) }}
+
+            {% if not app.user %}
+                <a class="btn btn-sm btn-outline-secondary" href="{{ path('security_inscription') }}">Sign up</a>
+                <a class="btn btn-sm btn-outline-secondary" href="{{ path('security_connexion') }}">Sign in</a>
+            {% else %}
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="{{  path('security_deconnexion') }}">Déconnexion</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="{{ path('pageIndex',{page: "technologie"}) }}">Technologie</a>
+            <a class="p-2 text-muted" href="{{ path('pageIndex',{page: "Science"}) }}">Science</a>
+        </nav>
+    </div>
+
+
+    {% block body %}
+    {% endblock %}
+    <footer class="blog-footer">
+        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+                    href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>-->
+    <script src="{{ asset('dist/js/popper.min.js')}}"></script>
+    <script src="{{ asset('dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('dist/js/holder.min.js') }}"></script>
+    <script>
+        Holder.addTheme('thumb', {
+            bg: '#55595c',
+            fg: '#eceeef',
+            text: 'Thumbnail'
+        });
+    </script>
+
+    <script>
+        var options = {
+            url: function(phrase) {
+                return "{{ path('handle_search') }}/" + phrase;
+            },
+            getValue: "nom",
+
+            ajaxSettings: {
+                    dataType: "json",
+                    method: "POST",
+                    data: {
+                        dataType: "json"
+                    }
+                },
+            template: {
+                type: "custom",
+                method: function(value, item) {
+                    return '<a href="{{ path('article') }}/'+item.id+'">'+ item.nom +'</a>';
+                }
+            },
+            preparePostData: function(data) {
+                    data.phrase = $("#form_search").val();
+                    return data;
+            },
+
+                requestDelay: 400,
+                theme: "square"
+            };
+
+        $("#form_search").easyAutocomplete(options);
+        //'<a href="{{ path('article') }}/'+element.id+'">'+element.nom +'</a>';
+    </script>
+
+    {% block javascript %}
+    {% endblock %}
+</div>
+</body>
+</html>

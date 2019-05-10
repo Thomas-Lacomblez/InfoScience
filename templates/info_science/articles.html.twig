@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ article.NOM  }} {% endblock %}
+
+{% block body %}
+    <h1>{{article.NOM }}</h1>
+    <article>{{ article.contenu }}</article>
+      
+    
+    <br/>
+    <h2>Commentaires</h2>
+    {{ render(controller("App\\Controller\\InfoScienceController::commentairesArticle",{"id": article.id})) }}
+
+    
+    {% if app.user %}
+    {{ form_start(commentForm) }}
+    {{form_row(commentForm.message , {'attr': {'placeholder': 'Votre Commentaires'}}) }}
+    <button class="btn btn-lg btn-primary btn-block">Envoyer</button>
+    {{ form_end(commentForm) }} 
+    {% else %}
+        <b>Vous devez être connecté pour pouvoir écrire un commentaire ! vous pouvez vous connectez <a href="{{ path('security_connexion') }}">ici</a> où vous inscrire <a href="{{ path('security_inscription') }}">ici</a></b>
+        
+    {% endif %}
+{% endblock %}
